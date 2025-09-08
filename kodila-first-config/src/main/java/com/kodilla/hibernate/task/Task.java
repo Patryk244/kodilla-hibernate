@@ -1,22 +1,20 @@
 package com.kodilla.hibernate.task;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Table;
+import com.kodilla.hibernate.taskList.TaskList;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.persistence.Id;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "TASKS")
-public class Task {
-
+public final class Task {
     private int id;
     private String description;
     private Date created;
     private int duration;
+    private TaskFinancialDetails taskFinancialDetails;
+    private TaskList taskList;
 
     public Task() {
     }
@@ -41,29 +39,50 @@ public class Task {
     }
 
     @NotNull
-    @Column(name="CREATED")
+    @Column(name = "CREATED")
     public Date getCreated() {
         return created;
     }
 
-    @Column(name="DURATION")
+    @Column(name = "DURATION")
     public int getDuration() {
         return duration;
     }
 
-    private void setId(int id) {
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "TASKS_FINANCIALS_ID")
+    public TaskFinancialDetails getTaskFinancialDetails() {
+        return taskFinancialDetails;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TASKLIST_ID")
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    // Settery
+    public void setId(int id) {
         this.id = id;
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    private void setCreated(Date created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    private void setDuration(int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
+        this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 }
