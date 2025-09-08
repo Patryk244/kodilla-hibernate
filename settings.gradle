@@ -1,0 +1,3 @@
+rootProject.name = 'kodilla-hibernate'
+
+include 'kodila-first-config'
