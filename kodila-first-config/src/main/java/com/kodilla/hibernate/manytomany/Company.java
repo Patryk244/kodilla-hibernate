@@ -4,10 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.*;
-
+@NamedNativeQuery(
+        name = "Company.findByFirstCharacters",
+        query = "SELECT * FROM COMPANIES2 WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :FINDVALUE",
+        resultClass = Company.class
+)
 @Entity
-@Table(name = "COMPANIES")
-public class Company {
+@Table(name = "COMPANIES2")
+public final class Company {
 
     private int id;
     private String name;
@@ -28,7 +32,7 @@ public class Company {
     }
 
     @NotNull
-    @Column(name = "COMAPANY_NAME")
+    @Column(name = "COMPANY_NAME")
     public String getName() {
         return name;
     }
@@ -49,5 +53,10 @@ public class Company {
 
     private void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Company id=" + id + ", name=" + name;
     }
 }

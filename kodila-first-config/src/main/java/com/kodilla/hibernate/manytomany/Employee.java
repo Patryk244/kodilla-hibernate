@@ -2,9 +2,14 @@ package com.kodilla.hibernate.manytomany;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.*;
 
+@NamedQuery(
+        name = "Employee.findEmployeesBySurname",
+        query = "FROM Employee e WHERE e.lastName = :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
