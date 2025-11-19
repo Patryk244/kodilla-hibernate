@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.*;
-@NamedNativeQuery(
-        name = "Company.findByFirstCharacters",
-        query = "SELECT * FROM COMPANIES2 WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :FINDVALUE",
-        resultClass = Company.class
+@NamedQuery(
+        name = "Company.findByNameFragment",
+        query = "FROM Company WHERE name LIKE :NAME_FRAGMENT"
 )
 @Entity
 @Table(name = "COMPANIES2")

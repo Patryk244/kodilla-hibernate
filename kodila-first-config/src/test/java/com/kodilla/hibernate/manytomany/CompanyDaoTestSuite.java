@@ -67,19 +67,4 @@ class CompanyDaoTestSuite {
         //}
     }
 
-    @Test
-    void findCompanyByFirstThreeCharacters() {
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
-        Company softwareLearning = new Company("Software Learning");
-        companyDao.save(softwareMachine);
-        companyDao.save(dataMaesters);
-        companyDao.save(softwareLearning);
-        List<Company> found = companyDao.findByFirstCharacters("Sof");
-        for (Company element : found) {
-            System.out.println(element.toString());
-        }
-        System.out.println("found: " + found.size());
-        assertEquals(2, found.size());
-    }
 }

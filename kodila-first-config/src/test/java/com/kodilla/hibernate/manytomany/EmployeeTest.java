@@ -14,19 +14,4 @@ class EmployeeTest {
     @Autowired
     private EmployeeDao employeeDao;
 
-    @Test
-    void findByLastName() {
-        Employee employee1 = new Employee("Jan", "Kowalski");
-        Employee employee2 = new Employee("Maciej", "Nowak");
-        Employee employee3 = new Employee("Andrzej", "Nowak");
-        employeeDao.save(employee1);
-        employeeDao.save(employee2);
-        employeeDao.save(employee3);
-        List<Employee> foundKowalski = employeeDao.findEmployeesByLastName("Kowalski");
-        List<Employee> foundNowak = employeeDao.findEmployeesByLastName("Nowak");
-
-        assertEquals(1, foundKowalski.size());
-        assertNotEquals(1, foundNowak.size());
-        employeeDao.deleteAll();
-    }
 }

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface CompanyDao extends CrudRepository<Company,Integer> {
+public interface CompanyDao extends CrudRepository<Company, Integer> {
 
-    @Query(nativeQuery = true, name = "Company.findByFirstCharacters")
-    List<Company> findByFirstCharacters(@Param("FINDVALUE") String FINDVALUE);
+    @Query(name = "Company.findByNameFragment")
+    List<Company> findByNameFragment(@Param("NAME_FRAGMENT") String nameFragment);
 }

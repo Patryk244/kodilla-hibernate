@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.*;
 
 @NamedQuery(
-        name = "Employee.findEmployeesBySurname",
-        query = "FROM Employee e WHERE e.lastName = :LASTNAME"
+        name = "Employee.findByLastnameFragment",
+        query = "FROM Employee WHERE lastName LIKE :LASTNAME_FRAGMENT"
 )
 @Entity
 @Table(name = "EMPLOYEES")
